@@ -1,0 +1,14 @@
+<template>
+    <div class="kds-cell">{cellText}</div>
+
+    <input data-type="input" if:true={lineEdit} class="kds-editor-text" value={cellText} onfocusout={proceedSave}>
+    <select data-type="select" if:true={droplistEdit} class="kds-editor-droplist" onfocusout={proceedSave}>
+        <option></option>
+        <option>Hot</option>
+        <option>Warm</option>
+        <option>Cold</option>
+    </select>
+
+    <lightning-icon class="kds-edit" onclick={openEditor} size="x-small" icon-name="utility:edit"
+        alternative-text="Edit" title="Edit"></lightning-icon>
+</template>
