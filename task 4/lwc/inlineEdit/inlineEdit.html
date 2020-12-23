@@ -1,0 +1,49 @@
+<template>
+    <div class="kds-panel">
+        <div if:true={displaySpinner} class="kds-overlay">
+            <div class="kds-spinner">Loading...</div>
+        </div>
+        <div class="kds-table">
+            
+            <header class="kds-table-row">
+                <template iterator:it={columns}>
+                    <div if:true={it.value.resizable} key={it.value.fieldName} class="kds-table-caption">
+                        {it.value.label}
+                    </div>
+                    <div if:false={it.value.resizable} key={it.value.fieldName} class="kds-table-caption-fixed">
+                        {it.value.label}
+                    </div>
+                </template>
+</header>
+
+<template if:true={tableFetched} for:each={tableValues} for:item="account">
+                <div key={account.Id} class="kds-table-row" data-row={account.Id}>
+                    <div class="kds-table-cell kds-table-number">{account.Index}</div>
+                    <c-custom-cell class="kds-table-cell" cell-type="text" data-name="Name" data-id={account.Id}
+                        column-name="Name" cell-id={account.Id} cell-text={account.Name}
+                        onunfocused={proceedChangedValue}>
+                    </c-custom-cell>
+                    <c-custom-cell class="kds-table-cell" cell-type="droplist" data-name="Rating" data-id={account.Id}
+                        column-name="Rating" cell-id={account.Id} cell-text={account.Rating}
+                        onunfocused={proceedChangedValue}>
+                    </c-custom-cell>
+                    <div class="kds-table-cell">
+                        <div class="kds-table-icon" data-id={account.Id} onclick={handleDelete}>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+</div>
+
+<div class="kds-table-save" if:true={draftNotEmpty}>
+    <button class="kds-button-white" onclick={handleCancel}>Cancel</button>
+    <button class="kds-button-blue" onclick={handleSave}>Save</button>
+</div>
+
+</div>
+
+<c-inline-edit-delete-modal delete-id={deleteId} account-name={deleteName} ondeleteinprogress={deleteInProgress} ondeletecomplete={deleteComplete}>
+</c-inline-edit-delete-modal>
+
+</template>
