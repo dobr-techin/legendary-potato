@@ -16,7 +16,7 @@
                 </template>
 </header>
 
-<template if:true={resultFetched} for:each={result} for:item="account">
+<template if:true={tableFetched} for:each={tableValues} for:item="account">
                 <div key={account.Id} class="kds-table-row" data-row={account.Id}>
                     <div class="kds-table-cell kds-table-number">{account.Index}</div>
                     <c-custom-cell class="kds-table-cell" cell-type="text" data-name="Name" data-id={account.Id}
